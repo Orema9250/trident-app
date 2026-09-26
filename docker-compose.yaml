@@ -1,0 +1,35 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    ports:
+     - "5432:5432"
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: orema
+      POSTGRES_PASSWORD: orema
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  backend:
+    build: ./backend
+    ports:
+     - "3000:3000"
+    environment:
+      DB_HOST: postgres
+      DB_USER: orema
+      DB_PASSWORD: orema
+      DB_PORT: 5432
+      DB_NAME: mydatabase
+    depends_on:
+      - postgres
+
+  frontend:
+    build: ./frontend
+    ports: 
+     - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data: 

@@ -1,0 +1,113 @@
+# ==============================
+# Terraform
+# ==============================
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+
+*.tfplan
+tfplan
+plan.out
+
+.terraformrc
+terraform.rc
+
+# Terraform variable files that may contain secrets
+*.tfvars
+*.tfvars.json
+
+# Keep Terraform lock file committed
+!**/.terraform.lock.hcl
+
+
+# ==============================
+# Node.js
+# ==============================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+.npm/
+.cache/
+
+
+# ==============================
+# Environment / Secrets
+# ==============================
+.env
+.env.*
+!.env.example
+
+*.pem
+*.key
+*.p12
+*.pfx
+
+secrets/
+credentials/
+
+
+# ==============================
+# React / Vite
+# ==============================
+dist/
+build/
+
+.vite/
+
+
+# ==============================
+# Docker
+# ==============================
+docker-compose.override.yml
+
+
+# ==============================
+# AWS / SAM
+# ==============================
+.aws-sam/
+samconfig.toml
+
+
+# ==============================
+# Logs
+# ==============================
+*.log
+logs/
+
+
+# ==============================
+# Coverage / Testing
+# ==============================
+coverage/
+.nyc_output/
+
+
+# ==============================
+# IDE / Editors
+# ==============================
+.vscode/
+.idea/
+
+*.swp
+*.swo
+*~
+
+
+# ==============================
+# OS files
+# ==============================
+.DS_Store
+Thumbs.db
+
+
+# ==============================
+# Temporary files
+# ==============================
+tmp/
+temp/
+*.tmp
