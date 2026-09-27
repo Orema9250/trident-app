@@ -164,6 +164,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "dynamodb:DescribeTable",
           "dynamodb:DescribeContinuousBackups",
           "dynamodb:DescribeTimeToLive",
+          "dynamodb:ListTagsOfResource",
         ]
         Effect   = "Allow"
         Resource = "*"
