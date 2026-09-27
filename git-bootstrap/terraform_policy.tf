@@ -184,7 +184,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
         Sid = "Route53"
         Action = [
           "route53:GetHostedZone",
-          "route53:ListHostedZones"
+          "route53:ListHostedZones",
+          "route53:ListTagsForResource",
         ]
         Effect   = "Allow"
         Resource = "*"
