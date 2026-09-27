@@ -354,6 +354,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
         Action = [
           "logs:CreateLogGroup",
           "logs:TagResource",
+          "logs:DescribeLogGroups",
         ]
         Effect   = "Allow"
         Resource = "*"
