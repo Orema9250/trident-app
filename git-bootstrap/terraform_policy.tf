@@ -125,6 +125,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "elasticloadbalancing:ModifyListener",
           "elasticloadbalancing:DeleteListener",
           "elasticloadbalancing:DescribeListeners",
+          "elasticloadbalancing:DescribeListenerAttributes",
         ]
         Effect   = "Allow"
         Resource = "*"
