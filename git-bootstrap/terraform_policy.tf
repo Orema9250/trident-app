@@ -267,6 +267,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "s3:GetBucketPublicAccessBlock",
           "s3:GetBucketTagging",
           "s3:GetBucketAcl",
+          "s3:GetBucketCORS",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -333,6 +334,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "sns:DeleteTopic",
           "SNS:SetTopicAttributes",
           "SNS:GetTopicAttributes",
+          "SNS:ListTagsForResource",
         ]
         Effect   = "Allow"
         Resource = "*"
