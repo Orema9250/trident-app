@@ -123,7 +123,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "elasticloadbalancing:AddListenerCertificates",
           "elasticloadbalancing:CreateListener",
           "elasticloadbalancing:ModifyListener",
-          "elasticloadbalancing:DeleteListener"
+          "elasticloadbalancing:DeleteListener",
+          "elasticloadbalancing:DescribeListeners",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -183,6 +184,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "lambda:ListVersionsByFunction",
           "lambda:GetFunctionCodeSigningConfig",
           "lambda:AddPermission",
+          "lambda:GetPolicy",
 
         ]
         Effect   = "Allow"
@@ -231,6 +233,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "cloudfront:GetCachePolicy",
           "cloudfront:TagResource",
           "cloudfront:ListTagsForResource",
+          "cloudfront:UpdateDistribution",
 
         ]
         Effect   = "Allow"
