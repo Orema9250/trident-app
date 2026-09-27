@@ -371,6 +371,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "iam:GetPolicy",
           "iam:PutRolePolicy",
           "iam:ListRolePolicies",
+          "iam:ListAttachedRolePolicies",
 
         ]
         Effect   = "Allow"
