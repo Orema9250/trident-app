@@ -111,6 +111,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "elasticloadbalancing:AddTags",
           "elasticloadbalancing:DeleteLoadBalancer",
           "elasticloadbalancing:ModifyLoadBalancerAttributes",
+          "elasticloadbalancing:DescribeTags",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -162,6 +163,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "dynamodb:TagResource",
           "dynamodb:DescribeTable",
           "dynamodb:DescribeContinuousBackups",
+          "dynamodb:DescribeTimeToLive",
         ]
         Effect   = "Allow"
         Resource = "*"
