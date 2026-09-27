@@ -266,6 +266,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "s3:ListBucket",
           "s3:GetBucketPublicAccessBlock",
           "s3:GetBucketTagging",
+          "s3:GetBucketAcl",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -289,7 +290,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "rds:DeleteDBSubnetGroup",
           "rds:CreateDBSubnetGroup",
           "rds:ModifyDBInstance",
-          "rds:DescribeDBSubnetGroups"
+          "rds:DescribeDBSubnetGroups",
+          "rds:ListTagsForResource",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -330,6 +332,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "sns:TagResource",
           "sns:DeleteTopic",
           "SNS:SetTopicAttributes",
+          "SNS:GetTopicAttributes",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -352,7 +355,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ecr:DeleteRepository",
           "ecr:GetAuthorizationToken",
           "ecr:UntagResource",
-          "ecr:DescribeRepositories"
+          "ecr:DescribeRepositories",
+          "ecr:ListTagsForResource",
         ]
         Effect   = "Allow"
         Resource = "*"
