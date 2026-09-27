@@ -270,7 +270,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "s3:GetBucketCORS",
           "s3:GetBucketWebsite",
           "s3:GetBucketVersioning",
-          "s3:GetAccelerateConfiguration"
+          "s3:GetAccelerateConfiguration",
+          "s3:GetBucketRequestPayment"
         ]
         Effect   = "Allow"
         Resource = "*"
