@@ -180,7 +180,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "lambda:UpdateFunctionCode",
           "lambda:TagResource",
           "lambda:ListVersionsByFunction",
-          
+
         ]
         Effect   = "Allow"
         Resource = "*"
