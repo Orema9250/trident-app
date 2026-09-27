@@ -133,6 +133,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "elasticloadbalancing:CreateTargetGroup",
           "elasticloadbalancing:DescribeTargetGroups",
           "elasticloadbalancing:ModifyTargetGroupAttributes",
+          "elasticloadbalancing:DescribeTargetGroupAttributes"
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -160,6 +161,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "dynamodb:ListTables",
           "dynamodb:TagResource",
           "dynamodb:DescribeTable",
+          "dynamodb:DescribeContinuousBackups",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -226,6 +228,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "acm:ListCertificates",
           "acm:RequestCertificate",
           "acm:DescribeCertificate",
+          "acm:ListTagsForCertificate",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -319,6 +322,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "cognito-idp:DeleteUserPool",
           "cognito-idp:CreateUserPool",
           "cognito-idp:DescribeUserPool",
+          "cognito-idp:GetUserPoolMfaConfig",
         ]
         Effect   = "Allow"
         Resource = "*"
