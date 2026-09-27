@@ -135,7 +135,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "elasticloadbalancing:CreateTargetGroup",
           "elasticloadbalancing:DescribeTargetGroups",
           "elasticloadbalancing:ModifyTargetGroupAttributes",
-          "elasticloadbalancing:DescribeTargetGroupAttributes"
+          "elasticloadbalancing:DescribeTargetGroupAttributes",
+          "elasticloadbalancing:DescribeLoadBalancers",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -178,7 +179,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "lambda:GetFunction",
           "lambda:UpdateFunctionCode",
           "lambda:TagResource",
-          "logs:PutRetentionPolicy",
+          "lambda:ListVersionsByFunction",
+          
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -205,6 +207,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "route53:ListHostedZones",
           "route53:ListTagsForResource",
           "route53:ChangeResourceRecordSets",
+          "route53:GetChange",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -344,6 +347,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "cloudwatch:DescribeAlarms",
           "cloudwatch:TagResource",
           "cloudwatch:PutMetricAlarm",
+          "CloudWatch:ListTagsForResource"
 
         ]
         Effect   = "Allow"
@@ -356,6 +360,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "logs:TagResource",
           "logs:DescribeLogGroups",
           "logs:ListTagsForResource",
+          "logs:DeleteLogGroup",
+          "logs:PutRetentionPolicy",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -370,6 +376,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "SNS:GetTopicAttributes",
           "SNS:ListTagsForResource",
           "SNS:Subscribe",
+          "SNS:GetSubscriptionAttributes"
         ]
         Effect   = "Allow"
         Resource = "*"
