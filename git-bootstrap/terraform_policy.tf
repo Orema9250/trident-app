@@ -137,6 +137,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "elasticloadbalancing:ModifyTargetGroupAttributes",
           "elasticloadbalancing:DescribeTargetGroupAttributes",
           "elasticloadbalancing:DescribeLoadBalancers",
+          "elasticloadbalancing:DescribeLoadBalancerAttributes",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -181,6 +182,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "lambda:TagResource",
           "lambda:ListVersionsByFunction",
           "lambda:GetFunctionCodeSigningConfig",
+          "lambda:AddPermission",
 
         ]
         Effect   = "Allow"
@@ -228,6 +230,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "cloudfront:GetOriginAccessControl",
           "cloudfront:GetCachePolicy",
           "cloudfront:TagResource",
+          "cloudfront:ListTagsForResource",
 
         ]
         Effect   = "Allow"
@@ -379,7 +382,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "SNS:GetTopicAttributes",
           "SNS:ListTagsForResource",
           "SNS:Subscribe",
-          "SNS:GetSubscriptionAttributes"
+          "SNS:GetSubscriptionAttributes",
+          "SNS:Unsubscribe",
         ]
         Effect   = "Allow"
         Resource = "*"
