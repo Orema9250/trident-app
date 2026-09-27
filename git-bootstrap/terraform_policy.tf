@@ -186,6 +186,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "lambda:GetFunctionCodeSigningConfig",
           "lambda:AddPermission",
           "lambda:GetPolicy",
+          "lambda:RemovePermission",
 
         ]
         Effect   = "Allow"
@@ -202,6 +203,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ecs:DeleteService",
           "ecs:DeleteTaskDefinitions",
           "ecs:DeregisterTaskDefinition",
+          "ecs:DescribeClusters",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -307,6 +309,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "s3:GetBucketObjectLockConfiguration",
           "s3:PutBucketTagging",
           "s3:GetBucketOwnershipControls",
+          "s3:PutBucketPolicy",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -317,7 +320,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "secretsmanager:GetSecretValue",
           "secretsmanager:DeleteSecret",
           "secretsmanager:ListSecrets",
-          "secretsmanager:CreateSecret"
+          "secretsmanager:CreateSecret",
+          "secretsmanager:TagResource",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -332,6 +336,14 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "rds:ModifyDBInstance",
           "rds:DescribeDBSubnetGroups",
           "rds:ListTagsForResource",
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+      {
+        Sid = "KMS"
+        Action = [
+          "kms:DescribeKey",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -434,6 +446,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "iam:ListAttachedRolePolicies",
           "iam:ListInstanceProfilesForRole",
           "iam:ListInstanceProfilesForRole",
+          "iam:ListEntitiesForPolicy",
+          "iam:TagRole",
 
         ]
         Effect   = "Allow"
