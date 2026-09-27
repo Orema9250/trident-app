@@ -274,7 +274,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "s3:GetBucketRequestPayment",
           "s3:GetBucketLogging",
           "s3:GetLifecycleConfiguration",
-
+          "s3:GetReplicationConfiguration",
         ]
         Effect   = "Allow"
         Resource = "*"
