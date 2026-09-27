@@ -87,6 +87,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ec2:AuthorizeSecurityGroupEgress",
           "ec2:AuthorizeSecurityGroupIngress",
           "ec2:DescribeSecurityGroups",
+          "ec2:RevokeSecurityGroupEgress",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -175,7 +176,9 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "lambda:CreateFunction",
           "lambda:DeleteFunction",
           "lambda:GetFunction",
-          "lambda:UpdateFunctionCode"
+          "lambda:UpdateFunctionCode",
+          "lambda:TagResource",
+          "logs:PutRetentionPolicy",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -201,6 +204,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "route53:GetHostedZone",
           "route53:ListHostedZones",
           "route53:ListTagsForResource",
+          "route53:ChangeResourceRecordSets",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -218,6 +222,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "cloudfront:GetDistribution",
           "cloudfront:GetOriginAccessControl",
           "cloudfront:GetCachePolicy",
+          "cloudfront:TagResource",
 
         ]
         Effect   = "Allow"
@@ -289,6 +294,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "s3:GetEncryptionConfiguration",
           "s3:GetBucketObjectLockConfiguration",
           "s3:PutBucketTagging",
+          "s3:GetBucketOwnershipControls",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -326,6 +332,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "cognito-idp:CreateUserPool",
           "cognito-idp:DescribeUserPool",
           "cognito-idp:GetUserPoolMfaConfig",
+          "cognito-idp:CreateUserPoolClient"
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -336,6 +343,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "cloudwatch:DeleteAlarms",
           "cloudwatch:DescribeAlarms",
           "cloudwatch:TagResource",
+          "cloudwatch:PutMetricAlarm",
 
         ]
         Effect   = "Allow"
@@ -359,6 +367,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "SNS:SetTopicAttributes",
           "SNS:GetTopicAttributes",
           "SNS:ListTagsForResource",
+          "SNS:Subscribe",
         ]
         Effect   = "Allow"
         Resource = "*"
