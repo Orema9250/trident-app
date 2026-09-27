@@ -269,6 +269,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "s3:GetBucketAcl",
           "s3:GetBucketCORS",
           "s3:GetBucketWebsite",
+          "s3:GetBucketVersioning"
         ]
         Effect   = "Allow"
         Resource = "*"
