@@ -26,7 +26,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ec2:AttachInternetGateway",
           "ec2:CreateInternetGateway",
           "ec2:DeleteInternetGateway",
-          "ec2:DetachInternetGateway"
+          "ec2:DetachInternetGateway",
+          "ec2:DescribeInternetGateways"
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -59,6 +60,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ec2:CreateRouteTable",
           "ec2:AssociateRouteTable",
           "ec2:DeleteRouteTable",
+          "ec2:DescribeRouteTables",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -82,6 +84,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ec2:DeleteSecurityGroup",
           "ec2:AuthorizeSecurityGroupEgress",
           "ec2:AuthorizeSecurityGroupIngress",
+          "ec2:DescribeSecurityGroups",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -94,6 +97,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ec2:AssociateSubnetCidrBlock",
           "ec2:DescribeSubnets",
           "ec2:DisassociateVpcCidrBlock",
+          "ec2:ModifySubnetAttribute",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -125,6 +129,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
         Action = [
           "elasticloadbalancing:DeleteTargetGroup",
           "elasticloadbalancing:CreateTargetGroup",
+          "elasticloadbalancing:DescribeTargetGroups",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -150,6 +155,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "dynamodb:UpdateItem",
           "dynamodb:DeleteTable",
           "dynamodb:ListTables",
+          "dynamodb:TagResource"
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -201,6 +207,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "cloudfront:DeleteCachePolicy",
           "cloudfront:DeleteDistribution",
           "cloudfront:GetDistribution",
+          "cloudfront:GetOriginAccessControl",
+          "cloudfront:GetCachePolicy",
 
         ]
         Effect   = "Allow"
@@ -212,6 +220,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "acm:DeleteCertificate",
           "acm:GetCertificate",
           "acm:ListCertificates",
+          "acm:RequestCertificate",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -256,6 +265,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "s3:GetBucketPolicy",
           "s3:ListBucket",
           "s3:GetBucketPublicAccessBlock",
+          "s3:GetBucketTagging",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -278,7 +288,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "rds:AddTagsToResource",
           "rds:DeleteDBSubnetGroup",
           "rds:CreateDBSubnetGroup",
-          "rds:ModifyDBInstance"
+          "rds:ModifyDBInstance",
+          "rds:DescribeDBSubnetGroups"
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -288,6 +299,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
         Action = [
           "cognito-idp:AdminCreateUser",
           "cognito-idp:DeleteUserPool",
+          "cognito-idp:CreateUserPool"
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -298,6 +310,15 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "cloudwatch:DeleteAlarms",
           "cloudwatch:DescribeAlarms",
           "cloudwatch:TagResource",
+
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+      {
+        Sid = "LogsGroup"
+        Action = [
+          "logs:CreateLogGroup",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -307,7 +328,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
         Action = [
           "sns:CreateTopic",
           "sns:TagResource",
-          "sns:DeleteTopic"
+          "sns:DeleteTopic",
+          "SNS:SetTopicAttributes",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -329,7 +351,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ecr:TagResource",
           "ecr:DeleteRepository",
           "ecr:GetAuthorizationToken",
-          "ecr:UntagResource"
+          "ecr:UntagResource",
+          "ecr:DescribeRepositories"
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -346,7 +369,9 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "iam:GetRolePolicy",
           "iam:GetRole",
           "iam:GetPolicy",
-          "iam:PutRolePolicy"
+          "iam:PutRolePolicy",
+          "iam:ListRolePolicies",
+
         ]
         Effect   = "Allow"
         Resource = "*"
