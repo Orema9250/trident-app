@@ -337,6 +337,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "rds:DescribeDBSubnetGroups",
           "rds:ListTagsForResource",
           "rds:DescribeDBInstances",
+          "rds:DeleteDBInstance",
         ]
         Effect   = "Allow"
         Resource = "*"
