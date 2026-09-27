@@ -60,7 +60,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ec2:AssociateRouteTable",
           "ec2:DeleteRouteTable",
         ]
-        Effcet   = "Allow"
+        Effect   = "Allow"
         Resource = "*"
       },
       {
@@ -77,7 +77,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
       },
       {
         Sid = "SecurityGroups"
-        Actions = [
+        Action = [
           "ec2:CreateSecurityGroup",
           "ec2:DeleteSecurityGroup",
           "ec2:AuthorizeSecurityGroupEgress",
@@ -140,14 +140,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
         Effect   = "Allow"
         Resource = "*"
       },
-      {
-        Sid = "ExecuteApi"
-        Action = [
-          "execute-api:viaDomainArn"
-        ]
-        Effect   = "Allow"
-        Resource = "*"
-      },
+
       {
         Sid = "DynamodbTables"
         Action = [
@@ -166,6 +159,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
         Action = [
           "lambda:CreateFunction",
           "lambda:DeleteFunction",
+          "lambda:GetFunction",
+          "lambda:UpdateFunctionCode"
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -226,7 +221,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "s3:ListBucket",
         ]
         Effect   = "Allow"
-        Resource = "arn:aws::s3:::orema-tfstate-bucket-9250"
+        Resource = "arn:aws:s3:::orema-tfstate-bucket-9250"
       },
       {
         Sid = "TfStateObject"
@@ -236,7 +231,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "s3:GetObject",
         ]
         Effect   = "Allow"
-        Resource = "arn:aws::s3:::orema-tfstate-bucket-9250/*"
+        Resource = "arn:aws:s3:::orema-tfstate-bucket-9250/*"
       },
       {
         Sid = "FontendS3object"
@@ -349,7 +344,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "iam:DetachRolePolicy",
           "iam:GetRolePolicy",
           "iam:GetRole",
-          "iam:GetPolicy"
+          "iam:GetPolicy",
+          "iam:PutRolePolicy"
         ]
         Effect   = "Allow"
         Resource = "*"

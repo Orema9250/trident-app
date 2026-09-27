@@ -7,13 +7,13 @@ resource "aws_iam_role" "ecr_githubrole" {
       {
         Effect = "Allow"
         Principal = {
-          Federated = "aws_iam_openid_connect_provider.github_action.arn"
+          Federated = aws_iam_openid_connect_provider.github_action.arn
         },
         Action = "sts:AssumeRoleWithWebIdentity",
         Condition = {
           "StringEquals" : {
-            "token.actions.githubusercontent.com:sub" : "repo::Orema9250/trident-app:ref:refs/heads/main",
-            "token.actions.githubusercontent.com:aud" : "sts.amazonaws.com"
+            "token.actions.githubusercontent.com:sub" = "repo:Orema9250@242164193/trident-app@1389503752:ref:refs/heads/main",
+            "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
           }
         }
       }

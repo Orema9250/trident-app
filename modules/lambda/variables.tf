@@ -9,6 +9,6 @@ variable "dynamodb_table_name" {
 }
 
 variable "api_gateway_execution_arn" {
-  type = string
+  type        = string
   description = "api gateway execution arn"
 }

@@ -4,7 +4,7 @@ locals {
       route_key = "GET /activities"
       protected = true
     }
-  
+
     create_activities = {
       route_key = "POST /activities"
       protected = true
@@ -25,7 +25,7 @@ locals {
 }
 
 resource "aws_apigatewayv2_route" "health" {
-  api_id    =  aws_apigatewayv2_api.cloudtask_api.id
+  api_id    = aws_apigatewayv2_api.cloudtask_api.id
   route_key = "GET /health"
   target    = "integrations/${aws_apigatewayv2_integration.cloudtask_integration.id}"
 }
