@@ -180,6 +180,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "lambda:UpdateFunctionCode",
           "lambda:TagResource",
           "lambda:ListVersionsByFunction",
+          "lambda:GetFunctionCodeSigningConfig",
 
         ]
         Effect   = "Allow"
@@ -208,6 +209,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "route53:ListTagsForResource",
           "route53:ChangeResourceRecordSets",
           "route53:GetChange",
+          "route53:ListResourceRecordSets",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -335,7 +337,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "cognito-idp:CreateUserPool",
           "cognito-idp:DescribeUserPool",
           "cognito-idp:GetUserPoolMfaConfig",
-          "cognito-idp:CreateUserPoolClient"
+          "cognito-idp:CreateUserPoolClient",
+          "cognito-idp:DescribeUserPoolClient"
         ]
         Effect   = "Allow"
         Resource = "*"
