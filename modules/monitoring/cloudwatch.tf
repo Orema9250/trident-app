@@ -134,7 +134,7 @@ resource "aws_cloudwatch_metric_alarm" "lambda" {
   statistic           = "Sum"
   threshold           = 1
   treat_missing_data  = "notBreaching"
-  alarm_description   = "Triggers alarm if one or more lamdafunction error "
+  alarm_description   = "Triggers alarm if one or more lamdafunction error"
   actions_enabled     = "true"
   alarm_actions       = [aws_sns_topic.user_updates.arn]
   ok_actions          = [aws_sns_topic.user_updates.arn]

@@ -38,7 +38,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ec2:AllocateAddress",
           "ec2:ReleaseAddress",
           "ec2:DescribeAddresses",
-          "ec2:DescribeAddressesAttribute"
+          "ec2:DescribeAddressesAttribute",
+          "ec2:DescribeNetworkInterfaces",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -72,7 +73,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ec2:DescribeVpcEndpoints",
           "ec2:CreateVpcEndpoint",
           "ec2:AcceptVpcEndpointConnections",
-          "ec2:ModifyVpcEndpoint"
+          "ec2:ModifyVpcEndpoint",
+          "ec2:DescribePrefixLists"
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -130,6 +132,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "elasticloadbalancing:DeleteTargetGroup",
           "elasticloadbalancing:CreateTargetGroup",
           "elasticloadbalancing:DescribeTargetGroups",
+          "elasticloadbalancing:ModifyTargetGroupAttributes",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -155,7 +158,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "dynamodb:UpdateItem",
           "dynamodb:DeleteTable",
           "dynamodb:ListTables",
-          "dynamodb:TagResource"
+          "dynamodb:TagResource",
+          "dynamodb:DescribeTable",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -221,6 +225,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "acm:GetCertificate",
           "acm:ListCertificates",
           "acm:RequestCertificate",
+          "acm:DescribeCertificate",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -277,6 +282,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "s3:GetReplicationConfiguration",
           "s3:GetEncryptionConfiguration",
           "s3:GetBucketObjectLockConfiguration",
+          "s3:PutBucketTagging",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -311,7 +317,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
         Action = [
           "cognito-idp:AdminCreateUser",
           "cognito-idp:DeleteUserPool",
-          "cognito-idp:CreateUserPool"
+          "cognito-idp:CreateUserPool",
+          "cognito-idp:DescribeUserPool",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -331,6 +338,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
         Sid = "LogsGroup"
         Action = [
           "logs:CreateLogGroup",
+          "logs:TagResource",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -354,6 +362,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "sqs:CreateQueue",
           "sqs:DeleteQueue",
           "sqs:GetQueueAttributes",
+          "sqs:listqueuetags",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -387,6 +396,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "iam:PutRolePolicy",
           "iam:ListRolePolicies",
           "iam:ListAttachedRolePolicies",
+          "iam:ListInstanceProfilesForRole",
+          "iam:ListInstanceProfilesForRole",
 
         ]
         Effect   = "Allow"
