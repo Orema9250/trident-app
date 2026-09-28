@@ -200,7 +200,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ecs:DeleteService",
           "ecs:DescribeServices",
           "ecs:UpdateService",
-          "ecs:ListServiceDeployments"
+          "ecs:ListServiceDeployments",
+          "ecs:DescribeServiceDeployments"
         ]
         Effect   = "Allow"
         Resource = "*"
