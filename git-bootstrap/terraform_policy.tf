@@ -205,6 +205,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ecs:DeregisterTaskDefinition",
           "ecs:DescribeClusters",
           "ecs:DescribeTaskDefinition",
+          "ecs:DescribeServices"
         ]
         Effect   = "Allow"
         Resource = "*"
