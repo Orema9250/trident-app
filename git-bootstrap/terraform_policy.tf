@@ -193,19 +193,34 @@ resource "aws_iam_role_policy" "terraform_policy" {
         Resource = "*"
       },
       {
-        Sid = "ECS"
+        Sid = "EccService"
         Action = [
-          "ecs:CreateCluster",
-          "ecs:RegisterTaskDefinition",
           "ecs:TagResource",
           "ecs:CreateService",
-          "ecs:DeleteCluster",
           "ecs:DeleteService",
+          "ecs:DescribeServices",
+          "ecs:UpdateService"
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+      {
+        Sid = "EcsCluster"
+        Action = [
+          "ecs:CreateCluster",
+          "ecs:DeleteCluster",
+          "ecs:DescribeClusters",
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+      {
+        Sid = "EcsTaskDefinition"
+        Action = [
+          "ecs:DescribeTaskDefinition",
           "ecs:DeleteTaskDefinitions",
           "ecs:DeregisterTaskDefinition",
-          "ecs:DescribeClusters",
-          "ecs:DescribeTaskDefinition",
-          "ecs:DescribeServices"
+          "ecs:RegisterTaskDefinition",
         ]
         Effect   = "Allow"
         Resource = "*"
