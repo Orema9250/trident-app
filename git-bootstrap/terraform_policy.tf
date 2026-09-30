@@ -76,6 +76,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ec2:CreateRouteTable",
           "ec2:AssociateRouteTable",
           "ec2:DeleteRouteTable",
+          "ec2:DisassociateRouteTable",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -403,7 +404,8 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "cognito-idp:DescribeUserPool",
           "cognito-idp:GetUserPoolMfaConfig",
           "cognito-idp:CreateUserPoolClient",
-          "cognito-idp:DescribeUserPoolClient"
+          "cognito-idp:DescribeUserPoolClient",
+          "cognito-idp:DeleteUserPoolClient",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -508,6 +510,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "iam:ListInstanceProfilesForRole",
           "iam:ListEntitiesForPolicy",
           "iam:TagRole",
+          "iam:DeleteRolePolicy"
 
         ]
         Effect   = "Allow"
