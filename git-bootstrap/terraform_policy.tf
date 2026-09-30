@@ -56,6 +56,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
         Action = [
           "ec2:AllocateAddress",
           "ec2:ReleaseAddress",
+          "ec2:DisassociateAddress"
         ]
         Effect   = "Allow"
         Resource = "*"
