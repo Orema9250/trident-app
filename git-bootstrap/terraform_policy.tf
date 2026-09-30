@@ -11,11 +11,31 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ec2:AssociateVpcCidrBlock",
           "ec2:CreateDefaultVpc",
           "ec2:CreateVpc",
-          "ec2:CreateTags",
           "ec2:DeleteVpc",
-          "ec2:DescribeVpcs",
           "ec2:ModifyVpcAttribute",
           "ec2:DescribeVpcAttribute",
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+      {
+        Sid = "DescribeAccountAttributes"
+        Action = [
+          "ec2:DescribeAccountAttributes",
+          "ec2:CreateTags",
+          "ec2:DescribeVpcs",
+          "ec2:DescribeInternetGateways",
+          "ec2:DescribeAddresses",
+          "ec2:DescribeAddressesAttribute",
+          "ec2:DescribeNetworkInterfaces",
+          "ec2:DescribeNatGateways",
+          "ec2:DescribeRouteTables",
+          "ec2:DescribeVpcEndpoints",
+          "ec2:DescribePrefixLists",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeNetworkAcls",
+          "ec2:DescribeAvailabilityZones",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -27,29 +47,24 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ec2:CreateInternetGateway",
           "ec2:DeleteInternetGateway",
           "ec2:DetachInternetGateway",
-          "ec2:DescribeInternetGateways"
         ]
         Effect   = "Allow"
-        Resource = "*"
+        Resource = "arn:aws:ec2:us-east-1:090243701151:internet-gateway/*"
       },
       {
         Sid = "ElasticIpAddress"
         Action = [
           "ec2:AllocateAddress",
           "ec2:ReleaseAddress",
-          "ec2:DescribeAddresses",
-          "ec2:DescribeAddressesAttribute",
-          "ec2:DescribeNetworkInterfaces",
         ]
         Effect   = "Allow"
-        Resource = "*"
+        Resource = "arn:aws:ec2:us-east-1:090243701151:elastic-ip/*"
       },
       {
         Sid = "NatGateways"
         Action = [
           "ec2:CreateNatGateway",
           "ec2:DeleteNatGateway",
-          "ec2:DescribeNatGateways"
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -61,7 +76,6 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ec2:CreateRouteTable",
           "ec2:AssociateRouteTable",
           "ec2:DeleteRouteTable",
-          "ec2:DescribeRouteTables",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -70,11 +84,10 @@ resource "aws_iam_role_policy" "terraform_policy" {
         Sid = "Endpoints"
         Action = [
           "ec2:DeleteVpcEndpoints",
-          "ec2:DescribeVpcEndpoints",
           "ec2:CreateVpcEndpoint",
           "ec2:AcceptVpcEndpointConnections",
           "ec2:ModifyVpcEndpoint",
-          "ec2:DescribePrefixLists"
+
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -86,7 +99,6 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ec2:DeleteSecurityGroup",
           "ec2:AuthorizeSecurityGroupEgress",
           "ec2:AuthorizeSecurityGroupIngress",
-          "ec2:DescribeSecurityGroups",
           "ec2:RevokeSecurityGroupEgress",
         ]
         Effect   = "Allow"
@@ -98,7 +110,6 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ec2:DeleteSubnet",
           "ec2:CreateSubnet",
           "ec2:AssociateSubnetCidrBlock",
-          "ec2:DescribeSubnets",
           "ec2:DisassociateVpcCidrBlock",
           "ec2:ModifySubnetAttribute",
         ]
@@ -172,7 +183,16 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "dynamodb:ListTagsOfResource",
         ]
         Effect   = "Allow"
-        Resource = "*"
+        Resource = "arn:aws:dynamodb:us-east-1:090243701151:table/cloudtask-activities"
+      },
+      {
+        Sid = "DunamoDbStream"
+        Action = [
+          "dynamodb:ListTagsOfResource",
+        ]
+        Effect   = "Allow"
+        Resource = "arn:aws:dynamodb:us-east-1:090243701151:table/cloudtask-activities/stream/*"
+
       },
       {
         Sid = "Lambda"
@@ -265,11 +285,17 @@ resource "aws_iam_role_policy" "terraform_policy" {
         Sid = "CertificateManager"
         Action = [
           "acm:DeleteCertificate",
-          "acm:GetCertificate",
           "acm:ListCertificates",
-          "acm:RequestCertificate",
           "acm:DescribeCertificate",
           "acm:ListTagsForCertificate",
+        ]
+        Effect   = "Allow"
+        Resource = "arn:aws:acm:us-east-1:090243701151:certificate/*"
+      },
+      {
+        Sid = "CertificateManagerRequest"
+        Action = [
+          "acm:RequestCertificate",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -374,11 +400,18 @@ resource "aws_iam_role_policy" "terraform_policy" {
         Action = [
           "cognito-idp:AdminCreateUser",
           "cognito-idp:DeleteUserPool",
-          "cognito-idp:CreateUserPool",
           "cognito-idp:DescribeUserPool",
           "cognito-idp:GetUserPoolMfaConfig",
           "cognito-idp:CreateUserPoolClient",
           "cognito-idp:DescribeUserPoolClient"
+        ]
+        Effect   = "Allow"
+        Resource = "arn:aws:cognito-idp:us-east-1:090243701151:userpool/*"
+      },
+      {
+        Sid = "CognitoCreateUser"
+        Action = [
+          "cognito-idp:CreateUserPool",
         ]
         Effect   = "Allow"
         Resource = "*"
@@ -390,8 +423,14 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "cloudwatch:DescribeAlarms",
           "cloudwatch:TagResource",
           "cloudwatch:PutMetricAlarm",
+        ]
+        Effect   = "Allow"
+        Resource = "arn:aws:cloudwatch:us-east-1:090243701151:alarm/*"
+      },
+      {
+        Sid = "CloudWatchListTags"
+        Action = [
           "CloudWatch:ListTagsForResource"
-
         ]
         Effect   = "Allow"
         Resource = "*"
