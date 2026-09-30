@@ -49,7 +49,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ec2:DetachInternetGateway",
         ]
         Effect   = "Allow"
-        Resource = "arn:aws:ec2:us-east-1:090243701151:internet-gateway/*"
+        Resource = "*"
       },
       {
         Sid = "ElasticIpAddress"
@@ -58,7 +58,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "ec2:ReleaseAddress",
         ]
         Effect   = "Allow"
-        Resource = "arn:aws:ec2:us-east-1:090243701151:elastic-ip/*"
+        Resource = "*"
       },
       {
         Sid = "NatGateways"
@@ -183,7 +183,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "dynamodb:ListTagsOfResource",
         ]
         Effect   = "Allow"
-        Resource = "arn:aws:dynamodb:us-east-1:090243701151:table/cloudtask-activities"
+        Resource = "*"
       },
       {
         Sid = "DunamoDbStream"
@@ -191,7 +191,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "dynamodb:ListTagsOfResource",
         ]
         Effect   = "Allow"
-        Resource = "arn:aws:dynamodb:us-east-1:090243701151:table/cloudtask-activities/stream/*"
+        Resource = "*"
 
       },
       {
@@ -290,7 +290,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "acm:ListTagsForCertificate",
         ]
         Effect   = "Allow"
-        Resource = "arn:aws:acm:us-east-1:090243701151:certificate/*"
+        Resource = "*"
       },
       {
         Sid = "CertificateManagerRequest"
@@ -406,7 +406,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "cognito-idp:DescribeUserPoolClient"
         ]
         Effect   = "Allow"
-        Resource = "arn:aws:cognito-idp:us-east-1:090243701151:userpool/*"
+        Resource = "*"
       },
       {
         Sid = "CognitoCreateUser"
@@ -425,7 +425,7 @@ resource "aws_iam_role_policy" "terraform_policy" {
           "cloudwatch:PutMetricAlarm",
         ]
         Effect   = "Allow"
-        Resource = "arn:aws:cloudwatch:us-east-1:090243701151:alarm/*"
+        Resource = "*"
       },
       {
         Sid = "CloudWatchListTags"
