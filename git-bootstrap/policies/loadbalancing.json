@@ -32,7 +32,8 @@
         "Sid" : "DeleteAppListener" ,
         "Action" : [
           "elasticloadbalancing:DeleteListener",
-          "elasticloadbalancing:ModifyLoadBalancerAttributes"
+          "elasticloadbalancing:ModifyLoadBalancerAttributes",
+          "elasticloadbalancing:DeleteLoadBalancer"
         ],
         "Effect"  : "Allow" ,
         "Resource" : "arn:aws:elasticloadbalancing:us-east-1:090243701151:listener/app/my-lb/*/*"

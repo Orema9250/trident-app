@@ -79,7 +79,8 @@
           "ec2:CreateRoute",
           "ec2:CreateRouteTable",
           "ec2:AssociateRouteTable",
-          "ec2:DeleteRouteTable"
+          "ec2:DeleteRouteTable",
+          "ec2:CreateVpcEndpoint"
         ],
         "Effect"   : "Allow",
         "Resource" : "arn:aws:ec2:us-east-1:090243701151:route-table/*"
