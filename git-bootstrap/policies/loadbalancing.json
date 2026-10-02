@@ -26,14 +26,13 @@
           "elasticloadbalancing:ModifyLoadBalancerAttributes"
         ],
         "Effect"   : "Allow" ,
-        "Resource" : "arn:aws:elasticloadbalancing:us-east-1:090243701151:loadbalancer/my-lb"
+        "Resource" : "arn:aws:elasticloadbalancing:us-east-1:090243701151:loadbalancer/app/my-lb/*"
       },
       {
         "Sid" : "DeleteAppListener" ,
         "Action" : [
-          "elasticloadbalancing:DeleteListener",
-          "elasticloadbalancing:ModifyLoadBalancerAttributes",
-          "elasticloadbalancing:DeleteLoadBalancer"
+          "elasticloadbalancing:DeleteListener"
+          
         ],
         "Effect"  : "Allow" ,
         "Resource" : "arn:aws:elasticloadbalancing:us-east-1:090243701151:listener/app/my-lb/*/*"
