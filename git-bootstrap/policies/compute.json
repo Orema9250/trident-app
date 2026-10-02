@@ -1,0 +1,93 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+        "Sid"    : "PassOnlyECSApplicationRole",
+        "Effect" : "Allow",
+        "Action" : "iam:PassRole",
+        "Resource" : [
+          "arn:aws:iam::090243701151:role/ecsexecution-role",
+          "arn:aws:iam::090243701151:role/ecstask-role"
+        ],
+        "Condition" : {
+          "StringEquals" : {
+            "iam:PassedToService" : "ecs-tasks.amazonaws.com"
+          }
+        }
+      },
+      {
+        "Sid" : "LambdaPassCapacityProvider",
+        "Action" : [
+          "lambda:PassCapacityProvider"
+        ],
+        "Effect" : "Allow",
+        "Resource" : "arn:aws:lambda:us-east-1:090243701151:capacity-provider:*"
+      },
+      {
+        "Sid" : "Lambda",
+        "Action" : [
+          "lambda:CreateFunction",
+          "lambda:DeleteFunction",
+          "lambda:GetFunction",
+          "lambda:TagResource",
+          "lambda:ListVersionsByFunction",
+          "lambda:GetFunctionCodeSigningConfig",
+          "lambda:AddPermission",
+          "lambda:GetPolicy",
+          "lambda:RemovePermission"
+
+        ],
+        "Effect"   : "Allow",
+        "Resource" : "arn:aws:lambda:us-east-1:090243701151:function:lambda-function"
+      },
+      {
+        "Sid" : "EccService",
+        "Action" : [
+          "ecs:TagResource",
+          "ecs:CreateService",
+          "ecs:DeleteService",
+          "ecs:DescribeServices",
+          "ecs:UpdateService",
+          "ecs:ListServiceDeployments",
+          "ecs:DescribeServiceDeployments"
+        ],
+        "Effect"  : "Allow",
+        "Resource" : "arn:aws:ecs:us-east-1:090243701151:service/cloudtask-cluster/backend"
+      },
+      {
+        "Sid" : "DescribeServiceDeployments",
+        "Action" :  [
+          "ecs:DescribeServiceDeployments"
+        ],
+        "Effect" : "Allow",
+        "Resource" : "arn:aws:ecs:us-east-1:090243701151:service/cloudtask-cluster/backend/*"
+      },
+      {
+        "Sid" : "EcsCluster",
+        "Action" : [
+          "ecs:CreateCluster",
+          "ecs:DeleteCluster",
+          "ecs:DescribeClusters"
+        ],
+        "Effect"   : "Allow",
+        "Resource" : "arn:aws:ecs:us-east-1:090243701151:cluster/cloudtask-cluster"
+      },
+      {
+        "Sid" : "EcsTaskDefinition",
+        "Action" : [
+          "ecs:DescribeTaskDefinition",
+          "ecs:DeregisterTaskDefinition"
+        ],
+        "Effect"  : "Allow",
+        "Resource" : "*"
+      },
+      {
+        "Sid" : "RegisterTaskDefinition",
+        "Action" : [
+          "ecs:RegisterTaskDefinition"
+        ],
+        "Effect"   : "Allow",
+        "Resource" : "arn:aws:ecs:us-east-1:090243701151:task-definition/ecs-task:*"
+      }
+  ]
+}

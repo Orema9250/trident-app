@@ -1,0 +1,128 @@
+{
+   "Version" : "2012-10-17",
+    "Statement" : [
+ {
+        "Sid" : "DynamodbTables" ,
+        "Action" : [
+          "dynamodb:CreateTable",
+          "dynamodb:GetItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:UpdateItem",
+          "dynamodb:DeleteTable",
+          "dynamodb:ListTables",
+          "dynamodb:TagResource",
+          "dynamodb:DescribeTable",
+          "dynamodb:DescribeContinuousBackups",
+          "dynamodb:DescribeTimeToLive",
+          "dynamodb:ListTagsOfResource"
+        ],
+        "Effect"   : "Allow" ,
+        "Resource" : "arn:aws:dynamodb:us-east-1:090243701151:table/cloudtask-activities"
+      },
+      {
+        "Sid" : "DunamoDbStream",
+        "Action" : [
+          "dynamodb:ListTagsOfResource"
+        ],
+        "Effect"   : "Allow" ,
+        "Resource" : "arn:aws:dynamodb:us-east-1:090243701151:table/cloudtask-activities/stream/*"
+      },
+      {
+        "Sid" : "TfStateBucket" ,
+        "Action" : [
+          "s3:ListBucket"
+        ],
+        "Effect"   : "Allow" ,
+        "Resource" : "arn:aws:s3:::orema-tfstate-bucket-9250"
+      },
+      {
+        "Sid" : "TfStateObject",
+        "Action" : [
+          "s3:PutObject",
+          "s3:DeleteObject",
+          "s3:GetObject"
+        ],
+        "Effect"   : "Allow" ,
+        "Resource" : "arn:aws:s3:::orema-tfstate-bucket-9250/*"
+      },
+      {
+        "Sid" : "FontendS3object" ,
+        "Action" : [
+          "s3:PutObject",
+          "s3:DeleteObject",
+          "s3:GetObject"
+        ],
+        "Effect"   : "Allow" ,
+        "Resource" : "arn:aws:s3:::my-bucket-storage-9250/*"
+      },
+      {
+        "Sid" : "FrontendBucketPolicy",
+        "Action" : [
+          "s3:GetBucketAcl",
+          "s3:GetBucketCORS",
+          "s3:GetBucketPolicy"
+        ],
+        "Effect"   : "Allow" ,
+        "Resource" : "*"
+      },
+      {
+        "Sid" : "FrontendBucket" ,
+        "Action" : [
+          "s3:CreateBucket",
+          "s3:PutBucketOwnershipControls",
+          "s3:PutBucketVersioning",
+          "s3:DeleteBucket",
+          "s3:DeleteBucketPolicy",
+          "s3:PutBucketPublicAccessBlock",
+          "s3:ListBucket",
+          "s3:GetBucketPublicAccessBlock",
+          "s3:GetBucketTagging",
+          "s3:GetBucketWebsite",
+          "s3:GetBucketVersioning",
+          "s3:GetAccelerateConfiguration",
+          "s3:GetBucketRequestPayment",
+          "s3:GetBucketLogging",
+          "s3:GetLifecycleConfiguration",
+          "s3:GetReplicationConfiguration",
+          "s3:GetEncryptionConfiguration",
+          "s3:GetBucketObjectLockConfiguration",
+          "s3:PutBucketTagging",
+          "s3:GetBucketOwnershipControls",
+          "s3:PutBucketPolicy"
+        ],
+        "Effect"   : "Allow" ,
+        "Resource" : "arn:aws:s3:::my-bucket-storage-9250"
+      },
+        {
+        "Sid" : "RdsPermission" ,
+        "Action" : [
+          "rds:AddTagsToResource",
+          "rds:DescribeDBInstances",
+          "rds:DescribeDBSubnetGroups",
+          "rds:ListTagsForResource"
+        ],
+        "Effect"  : "Allow" ,
+        "Resource" : "*"
+      },
+      {
+        "Sid" : "Rds" ,
+        "Action" : [
+          "rds:CreateDBInstance",
+          "rds:DeleteDBInstance"
+        ],
+        "Effect"   : "Allow" ,
+        "Resource" : "arn:aws:rds:us-east-1:090243701151:db:mydatabase"
+      },
+      {
+        "Sid" : "RdsSubnetGroup" ,
+        "Action" : [
+          "rds:CreateDBSubnetGroup",
+          "rds:DeleteDBSubnetGroup"
+        ],
+        "Effect"   : "Allow" ,
+        "Resource" : "arn:aws:rds:us-east-1:090243701151:subgrp:rds-subnet-group"
+      }
+     
+    ]
+}
+     

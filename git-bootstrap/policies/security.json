@@ -1,0 +1,93 @@
+{
+ "Version" : "2012-10-17",
+    "Statement" : [
+ {
+        "Sid"    : "PassOnlylambdaApplicationRole",
+        "Effect" : "Allow",
+
+        "Action" : [
+          "iam:PassRole"
+        ],
+
+        "Resource" : "arn:aws:iam::090243701151:role/cloudtask-execution-role",
+
+        "Condition" : {
+          "StringEquals" : {
+            "iam:PassedToService" : "lambda.amazonaws.com"
+          }
+        }
+      },
+
+       {
+        "Sid" : "SecretManager",
+        "Action" : [
+          "secretsmanager:GetSecretValue",
+          "secretsmanager:DeleteSecret",
+          "secretsmanager:ListSecrets",
+          "secretsmanager:CreateSecret",
+          "secretsmanager:TagResource"
+        ],
+        "Effect"  : "Allow" ,
+        "Resource" : "arn:aws:secretsmanager:us-east-1:090243701151:secret:*"
+      },
+       {
+        "Sid" : "KMS",
+        "Action" : [
+          "kms:CreateGrant",
+          "kms:Decrypt",
+          "kms:DescribeKey",
+          "kms:Encrypt",
+          "kms:GenerateDataKey"
+        ],
+        "Effect"  : "Allow" ,
+        "Resource" : "arn:aws:kms:us-east-1:090243701151:key/*"
+      },
+       {
+        "Sid" : "IAM" ,
+        "Action" : [
+          "iam:CreateRole",
+          "iam:AttachRolePolicy",
+          "iam:CreatePolicy",
+          "iam:DeleteRole",
+          "iam:DeletePolicy",
+          "iam:DetachRolePolicy",
+          "iam:GetRolePolicy",
+          "iam:GetRole",
+          "iam:GetPolicy",
+          "iam:PutRolePolicy",
+          "iam:ListRolePolicies",
+          "iam:ListAttachedRolePolicies",
+          "iam:ListInstanceProfilesForRole",
+          "iam:ListInstanceProfilesForRole",
+          "iam:ListEntitiesForPolicy",
+          "iam:TagRole",
+          "iam:DeleteRolePolicy"
+        ],
+        "Effect"   : "Allow" ,
+        "Resource" : "*"
+      },
+      {
+        "Sid" : "Cognito" ,
+        "Action" : [
+          "cognito-idp:AdminCreateUser",
+          "cognito-idp:DeleteUserPool",
+          "cognito-idp:DescribeUserPool",
+          "cognito-idp:GetUserPoolMfaConfig",
+          "cognito-idp:CreateUserPoolClient",
+          "cognito-idp:DescribeUserPoolClient",
+          "cognito-idp:DeleteUserPoolClient"
+        ],
+        "Effect"   : "Allow" ,
+        "Resource" : "arn:aws:cognito-idp:us-east-1:090243701151:userpool/*"
+      },
+      {
+        "Sid" : "CognitoCreateUser" ,
+        "Action" : [
+          "cognito-idp:CreateUserPool"
+        ],
+        "Effect"   : "Allow" ,
+        "Resource" : "*"
+      }
+     
+    ]
+}  

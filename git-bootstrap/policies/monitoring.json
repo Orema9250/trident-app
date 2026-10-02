@@ -1,0 +1,81 @@
+ {
+     "Version" : "2012-10-17",
+    "Statement" : [
+    {
+        "Sid" : "CloudWatch" ,
+        "Action" : [
+          "cloudwatch:DeleteAlarms",
+          "cloudwatch:DescribeAlarms",
+          "cloudwatch:TagResource",
+          "cloudwatch:PutMetricAlarm"
+        ],
+        "Effect"  : "Allow" ,
+        "Resource" : "arn:aws:cloudwatch:us-east-1:090243701151:alarm:*"
+      },
+      {
+        "Sid" : "CloudWatchListTags",
+        "Action" : [
+          "CloudWatch:ListTagsForResource"
+        ],
+        "Effect"  : "Allow" ,
+        "Resource" : "*"
+      },
+      {
+        "Sid" : "LogsGroupPermission",
+        "Action" : [
+          "logs:DescribeLogGroups",
+          "logs:ListTagsForResource"
+        ],
+        "Effect"  : "Allow" ,
+        "Resource" : "*"
+      },
+      {
+        "Sid" : "LogsGroup" ,
+        "Action" : [
+          "logs:CreateLogGroup",
+          "logs:TagResource",
+          "logs:DeleteLogGroup",
+          "logs:PutRetentionPolicy"
+        ],
+        "Effect"  : "Allow" ,
+        "Resource" : "arn:aws:logs:us-east-1:090243701151:log-group:*"
+      },
+      {
+        "Sid" : "LogsGroupQuery" ,
+        "Action" : [
+          "logs:CreateScheduledQuery",
+          "logs:DeleteScheduledQuery",
+          "logs:GetScheduledQuery"
+        ],
+        "Effect"  : "Allow" ,
+        "Resource" : "arn:aws:logs:us-east-1:090243701151:scheduled-query:*"
+      },
+      {
+        "Sid" : "SNS" ,
+        "Action" : [
+          "sns:CreateTopic",
+          "sns:TagResource",
+          "sns:DeleteTopic",
+          "sns:SetTopicAttributes",
+          "sns:GetTopicAttributes",
+          "sns:ListTagsForResource",
+          "sns:Subscribe",
+          "sns:GetSubscriptionAttributes",
+          "sns:Unsubscribe"
+        ],
+        "Effect" : "Allow" ,
+        "Resource" : "*"
+      },
+      {
+        "Sid" : "SQS" ,
+        "Action" : [
+          "sqs:CreateQueue",
+          "sqs:DeleteQueue",
+          "sqs:GetQueueAttributes",
+          "sqs:listqueuetags"
+        ],
+        "Effect"  : "Allow" ,
+        "Resource" : "arn:aws:sqs:us-east-1:090243701151:user-updates-queue"
+      }
+    ]
+ }

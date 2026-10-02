@@ -1,0 +1,67 @@
+ {
+ "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Sid" : "ElasticloadbalancerPermission" ,
+        "Action" : [
+          "elasticloadbalancing:CreateListener",
+          "elasticloadbalancing:CreateLoadBalancer",
+          "elasticloadbalancing:DescribeCapacityReservation",
+          "elasticloadbalancing:DescribeListenerAttributes",
+          "elasticloadbalancing:DescribeListeners",
+          "elasticloadbalancing:DescribeLoadBalancerAttributes",
+          "elasticloadbalancing:DescribeLoadBalancers",
+          "elasticloadbalancing:DescribeTags",
+          "elasticloadbalancing:DescribeTargetGroupAttributes",
+          "elasticloadbalancing:DescribeTargetGroups"
+        ],
+        "Effect"   : "Allow",
+        "Resource" : "*"
+      },
+      {
+        "Sid" : "ELasticLoadBalancer" ,
+        "Action" : [
+          "elasticloadbalancing:AddTags",
+          "elasticloadbalancing:DeleteLoadBalancer",
+          "elasticloadbalancing:ModifyLoadBalancerAttributes"
+        ],
+        "Effect"   : "Allow" ,
+        "Resource" : "arn:aws:elasticloadbalancing:us-east-1:090243701151:loadbalancer/my-lb"
+      },
+      {
+        "Sid" : "DeleteAppListener" ,
+        "Action" : [
+          "elasticloadbalancing:DeleteListener"
+        ],
+        "Effect"  : "Allow" ,
+        "Resource" : "arn:aws:elasticloadbalancing:us-east-1:090243701151:listener/app/my-lb/*/*"
+      },
+      {
+        "Sid" : "DeleteGatewayListener",
+        "Action" : [
+          "elasticloadbalancing:DeleteListener"
+        ],
+        "Effect" : "Allow" ,
+        "Resource" : "arn:aws:elasticloadbalancing:us-east-1:090243701151:listener/gwy/my-lb/*/*"
+      },
+      {
+        "Sid" : "DeleteNetworkListener" ,
+        "Action" : [
+          "elasticloadbalancing:DeleteListener"
+        ],
+        "Effect"  : "Allow" ,
+        "Resource" : "arn:aws:elasticloadbalancing:us-east-1:090243701151:listener/net/my-lb/*/*"
+      },
+      {
+        "Sid" : "TargetGroup",
+        "Action" : [
+          "elasticloadbalancing:CreateTargetGroup",
+          "elasticloadbalancing:DeleteTargetGroup",
+          "elasticloadbalancing:ModifyTargetGroupAttributes"
+        ],
+        "Effect"  : "Allow" ,
+        "Resource" : "arn:aws:elasticloadbalancing:us-east-1:090243701151:targetgroup/ecs-backend-tg/*"
+      }
+      
+    ]
+}    
