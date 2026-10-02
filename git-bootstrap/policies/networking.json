@@ -111,7 +111,8 @@
           "ec2:DeleteSubnet",
           "ec2:CreateSubnet",
           "ec2:ModifySubnetAttribute",
-          "ec2:AssociateRouteTable"
+          "ec2:AssociateRouteTable",
+          "ec2:CreateNatGateway"
         ],
         "Effect" : "Allow",
         "Resource" : "arn:aws:ec2:us-east-1:090243701151:subnet/*"
