@@ -13,7 +13,8 @@
           "ec2:DescribeVpcAttribute",
           "ec2:DetachInternetGateway",
           "ec2:GetSecurityGroupsForVpc",
-          "ec2:ModifyVpcAttribute"
+          "ec2:ModifyVpcAttribute",
+          "ec2:CreateSecurityGroup"
         ],
         "Effect"  : "Allow",
         "Resource" : "arn:aws:ec2:us-east-1:090243701151:vpc/*"
@@ -57,7 +58,8 @@
       {
         "Sid" : "ElasticIpAddress",
         "Action" : [
-          "ec2:AllocateAddress"
+          "ec2:AllocateAddress",
+          "ec2:CreateNatGateway"
         ],
         "Effect"   : "Allow",
         "Resource" : "arn:aws:ec2:us-east-1:090243701151:elastic-ip/*"
@@ -108,7 +110,8 @@
         "Action" : [
           "ec2:DeleteSubnet",
           "ec2:CreateSubnet",
-          "ec2:ModifySubnetAttribute"
+          "ec2:ModifySubnetAttribute",
+          "ec2:AssociateRouteTable"
         ],
         "Effect" : "Allow",
         "Resource" : "arn:aws:ec2:us-east-1:090243701151:subnet/*"

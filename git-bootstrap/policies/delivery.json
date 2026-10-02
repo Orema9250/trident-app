@@ -48,7 +48,7 @@
           "cloudfront:UpdateDistribution"
         ],
         "Effect"   : "Allow" ,
-        "Resource" : "arn:aws:route53:::hostedzone/*"
+        "Resource" : "arn:aws:cloudfront::090243701151:*"
       },
       {
         "Sid" : "CertificateManager" ,
