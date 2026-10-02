@@ -1,12 +1,12 @@
 locals {
 
   policy_files = {
-    networking = "networking.json"
-    compute    = "compute.json"
-    database   = "database.json"
-    delivery   = "delivery.json"
-    monitoring = "monitoring.json"
-    security   = "security.json"
+    networking    = "networking.json"
+    compute       = "compute.json"
+    database      = "database.json"
+    delivery      = "delivery.json"
+    monitoring    = "monitoring.json"
+    security      = "security.json"
     loadbalancing = "loadbalancing.json"
   }
 
