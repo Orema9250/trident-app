@@ -38,9 +38,9 @@ variable "instance_class" {
   description = "The class of the instance"
   type        = map(string)
   default = {
-    "dev"   = "db.t4g.micro"
-    "stage" = "db.t4g.micro"
-    "prod"  = "db.t4g.micro"
+    "dev"   = "db.t3.micro"
+    "stage" = "db.t3.micro"
+    "prod"  = "db.t3.micro"
 
   }
 }
