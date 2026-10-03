@@ -111,7 +111,7 @@
           "rds:DeleteDBInstance"
         ],
         "Effect"   : "Allow" ,
-        "Resource" : "arn:aws:rds:us-east-1:090243701151:db:mydatabase"
+        "Resource" : "arn:aws:rds:us-east-1:090243701151:db:*"
       },
       {
         "Sid" : "RdsSubnetGroup" ,
