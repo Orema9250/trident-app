@@ -31,3 +31,14 @@ resource "aws_subnet" "database_subnet" {
   availability_zone = var.availability_zone[count.index]
 }
 
+resource "aws_subnet" "database_subnet_1d" {
+  vpc_id = aws_vpc.my_vpc.id
+
+  cidr_block = cidrsubnet(var.cidr_block, 8, 7)
+
+  availability_zone = "us-east-1d"
+
+  tags = {
+    Name = "database-subnet-1d"
+  }
+}
