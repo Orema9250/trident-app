@@ -50,10 +50,10 @@ variable "db_name" {
 
 variable "storage_type" {
   description = "Rds storage type"
-  type = map(string)
+  type        = map(string)
   default = {
-   dev = "gp3"
-   stage = "gp3"
-   prod = "gp3"
-  } 
+    dev   = "gp3"
+    stage = "gp3"
+    prod  = "gp3"
+  }
 }
