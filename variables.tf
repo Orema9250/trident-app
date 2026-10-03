@@ -41,6 +41,7 @@ variable "instance_class" {
     "dev"   = "db.t4g.micro"
     "stage" = "db.t4g.micro"
     "prod"  = "db.t4g.micro"
+
   }
 }
 
@@ -76,4 +77,14 @@ variable "image_tag" {
 variable "api_domain_name" {
   type        = string
   description = "The api dommain name for backend"
+}
+
+variable "storage_type" {
+  description = "Rds storage type"
+  type = map(string)
+  default = {
+   dev = "gp3"
+   stage = "gp3"
+   prod = "gp3"
+  } 
 }

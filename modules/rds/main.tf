@@ -10,6 +10,7 @@ resource "aws_db_subnet_group" "subnet_group" {
 
 resource "aws_db_instance" "rds_db" {
   allocated_storage           = var.allocated_storage[terraform.workspace]
+  storage_type =               var.storage_type[terraform.workspace]
   db_name                     = var.db_name
   engine                      = "postgres"
   engine_version              = var.engine_version

@@ -47,3 +47,13 @@ variable "db_name" {
   description = "The name of the database"
   type        = string
 }
+
+variable "storage_type" {
+  description = "Rds storage type"
+  type = map(string)
+  default = {
+   dev = "gp3"
+   stage = "gp3"
+   prod = "gp3"
+  } 
+}

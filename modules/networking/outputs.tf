@@ -3,10 +3,8 @@ output "vpc_id" {
 }
 
 output "rds_subnet_ids" {
-  value = concat(
-    aws_subnet.database_subnet[*].id,
-    [aws_subnet.database_subnet_1d.id]
-  )
+  value = aws_subnet.database_subnet[*].id
+  
 }
 
 output "public_subnet_ids" {
