@@ -118,7 +118,8 @@
         "Action" : [
           "rds:CreateDBSubnetGroup",
           "rds:DeleteDBSubnetGroup",
-          "rds:CreateDBInstance"
+          "rds:CreateDBInstance",
+          "rds:ModifyDBSubnetGroup"
         ],
         "Effect"   : "Allow" ,
         "Resource" : "arn:aws:rds:us-east-1:090243701151:subgrp:rds-subnet-group"
