@@ -65,10 +65,10 @@ jobs:
     - name: Download Current ECS Task Definition
       run: |
         TASK_DEF_ARN=$(aws ecs describe-services \
-        -- services "$ECS_SERVICE" \
-        -- cluster "$ECS_CLUSTER" \
-        -- query 'service[0].taskDefinition' \
-        -- output text
+        --services "$ECS_SERVICE" \
+        --cluster "$ECS_CLUSTER" \
+        --query 'service[0].taskDefinition' \
+        --output text
         )
 
         if [ -z "$TASK_DEF_ARN" ] || [ "$TASK_DEF_ARN" = "None" ]; then
