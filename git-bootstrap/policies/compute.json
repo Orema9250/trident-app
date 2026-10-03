@@ -60,7 +60,7 @@
           "ecs:DescribeServiceDeployments"
         ],
         "Effect" : "Allow",
-        "Resource" : "arn:aws:ecs:us-east-1:090243701151:service/cloudtask-cluster/backend/*"
+        "Resource" : "arn:aws:ecs:us-east-1:090243701151:service-deployment/cloudtask-cluster/backend/*"
       },
       {
         "Sid" : "EcsCluster",
