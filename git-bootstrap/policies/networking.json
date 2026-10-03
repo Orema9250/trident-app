@@ -101,7 +101,8 @@
           "ec2:DeleteSecurityGroup",
           "ec2:AuthorizeSecurityGroupEgress",
           "ec2:AuthorizeSecurityGroupIngress",
-          "ec2:RevokeSecurityGroupEgress"
+          "ec2:RevokeSecurityGroupEgress",
+          "ec2:CreateVpcEndpoint"
         ],
         "Effect"   : "Allow" ,
         "Resource" : "arn:aws:ec2:us-east-1:090243701151:security-group/*"
