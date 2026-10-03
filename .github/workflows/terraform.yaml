@@ -3,7 +3,11 @@ name: Terraform
 on:
   push:
     branches: [ "main" ]
-  pull_request:
+
+concurrency:
+  group: terraform-dev
+  cancel-in-progress: false
+
 
 permissions:
   id-token: write
@@ -81,5 +85,4 @@ jobs:
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
  
-    - name: Terraform Destroy
-      run: terraform destroy -auto-approve
+   

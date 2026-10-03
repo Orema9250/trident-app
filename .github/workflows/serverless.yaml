@@ -1,0 +1,64 @@
+name: Lambda
+
+on:
+  workflow_run:
+    workflows: [ "Deploy to Amazon ECS" ]
+    types: [completed]
+    branch: ["main"]
+
+concurrency: 
+  group: Lambda
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  AWS_REGION: us-east-1
+  LAMBDA_FUNCTION_NAME: "lambda-function"
+
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.workflow_run.head_sha }}
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume:  arn:aws:iam::090243701151:role/ecr-githubrole
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: "24"
+
+    - name: Install Depenndencies
+      working-directory: ./lambda/lambda
+      run: |
+        npm ci --omit=dev
+
+    - name: Create Lambda ZIP
+      working-directory: ./lambda/lambda
+      run: |
+        zip -r ../lambda.zip . -x "*.git*" "*.test.js"
+
+    - name: Update Lambda Function
+      run: |
+        aws lambda update-function-code \
+        --function-name  "$LAMBDA_FUNCTION_NAME" \
+        --zip-file fileb://lambda.zip
+
+    - name: Wait for Lambda
+      run: |
+        aws lambda wait function-updated \
+        --function-name  "$LAMBDA_FUNCTION_NAME"

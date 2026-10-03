@@ -1,0 +1,88 @@
+name: Deploy Frontend
+
+on:
+  workflow_run:
+    workflows: [ "Lambda" ] 
+    types:  [completed]
+    branches: [ "main" ]
+
+concurrency:
+  group: frontend
+  cancel-in-progress: false
+
+env:
+  AWS_REGION: us-east-1
+  S3_BUCKET: "my-bucket-storage-9250"
+  CLOUDFRONT_DISTRIBUTION_ID: $DISTRIBUTION_ID
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.workflow_run.head_sha }}
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::090243701151:role/terraform-githubrole
+        aws-region: us-east-1
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+        cache: npm
+        cache-dependency-path: frontend/package-lock.json
+
+    - name: Install Dependencies
+      working-directory: ./frontend
+      run:
+        npm ci
+           
+    - name: Build React Application
+      working-directory: ./frontend
+      run: |
+        npm run build
+
+    - name: Upload Frontend to S3
+      run: |
+        aws s3 sync ./frontend/dist/ \
+          s3://$S3_BUCKET/ \
+          --delete
+
+    - name: Get Cloudfront Distribution id
+      id: cloudfront
+      run : |
+        DISTRIBUTION_ID=$(aws cloudfront list-distributions \
+        --query 'DistributionList.Items[?Aliases.Items && contains(Aliases.Items, 'orema-devops.xyz')].Id | [0]" \
+        --output text
+        )
+
+        if [ -z "$DISTRIBUTION_ID" ] || [ "$DISTRIBUTION_ID" = "None" ]; then
+          echo "CloudFront distribution not found"
+          exit 1
+        fi
+
+        echo "distribution_id=$DISTRIBUTION_ID" >> "$GITHUB_OUTPUT"
+    
+    - name: Run Cloudfront Invalidation
+      run: |
+        aws cloudfront create-invalidation \
+        --distribution-id  "${{ steps.cloudfront.outputs.distribution_id }}" \
+        --paths "/*"
+
+
+
+
+

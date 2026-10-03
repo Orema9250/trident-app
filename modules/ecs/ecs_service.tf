@@ -25,5 +25,12 @@ resource "aws_ecs_service" "backend" {
   }
 
 
+  lifecycle {
+    ignore_changes = [
+      task_definition
+    ]
+  }
+
+
   wait_for_steady_state = true
 }
