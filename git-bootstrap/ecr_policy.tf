@@ -27,6 +27,27 @@ resource "aws_iam_role_policy" "github_ecr_role_policy" {
 
         Resource = "*"
       },
+      {
+        Sid = "EcrServiceforEcr"
+        Action = [
+          "ecs:TagResource",
+          "ecs:DescribeServices",
+          "ecs:UpdateService",
+          "ecs:ListServiceDeployments",
+          "ecs:DescribeServiceDeployments",
+        ]
+        Effect   = "Allow"
+        Resource = "arn:aws:ecs:us-east-1:090243701151:service/cloudtask-cluster/backend"
+      },
+      {
+        Sid = "EcsTaskDefinitionforEcr"
+        Action = [
+          "ecs:DescribeTaskDefinition",
+          "ecs:DeregisterTaskDefinitio"
+        ]
+        Effect   = "Allow",
+        Resource = "*"
+      },
     ]
   })
 }
