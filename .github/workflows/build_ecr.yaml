@@ -44,6 +44,10 @@ jobs:
         role-to-assume:  arn:aws:iam::090243701151:role/ecr-githubrole
         aws-region: us-east-1
 
+    - name: Verify AWS Identity
+      run: |
+        aws sts get-caller-identity
+
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2

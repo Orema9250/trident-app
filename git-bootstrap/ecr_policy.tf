@@ -43,11 +43,19 @@ resource "aws_iam_role_policy" "github_ecr_role_policy" {
         Sid = "EcsTaskDefinitionforEcr"
         Action = [
           "ecs:DescribeTaskDefinition",
-          "ecs:DeregisterTaskDefinitio"
+          "ecs:DeregisterTaskDefinition"
         ]
         Effect   = "Allow",
         Resource = "*"
       },
+      {
+        Sid = "RegisterTaskDefinition"
+        Action = [
+          "ecs:RegisterTaskDefinition"
+        ]
+        Effect   = "Allow",
+        Resource = "arn:aws:ecs:us-east-1:090243701151:task-definition/ecs-task:*"
+      }
     ]
   })
 }
