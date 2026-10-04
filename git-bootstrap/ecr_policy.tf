@@ -55,7 +55,21 @@ resource "aws_iam_role_policy" "github_ecr_role_policy" {
         ]
         Effect   = "Allow",
         Resource = "arn:aws:ecs:us-east-1:090243701151:task-definition/ecs-task:*"
-      }
+      },
+      {
+        Sid    = "PassOnlyECSApplicationRole"
+        Effect = "Allow"
+        Action = "iam:PassRole"
+        "Resource" : [
+          "arn:aws:iam::090243701151:role/ecsexecution-role",
+          "arn:aws:iam::090243701151:role/ecstask-role"
+        ]
+        Condition = {
+          StringEquals = {
+            "iam:PassedToService" = "ecs-tasks.amazonaws.com"
+          }
+        }
+      },
     ]
   })
 }
