@@ -54,7 +54,7 @@ jobs:
       working-directory: ./frontend
       env: 
         VITE_BACKEND_URL: https://api.orema-devops.xyz
-        VITE_SERVERLESS_URL: https://ij7dl0mx32.execute-api.us-east-1.amazonaws.com
+        VITE_SERVERLESS_URL: https://ij7dl0mx32.execute-api.us-east-1.amazonaws.com/dev
       run: |
         npm run build
 
