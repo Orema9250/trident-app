@@ -34,7 +34,8 @@
           "lambda:GetFunctionCodeSigningConfig",
           "lambda:AddPermission",
           "lambda:GetPolicy",
-          "lambda:RemovePermission"
+          "lambda:RemovePermission",
+          "lambda:UpdateFunctionCode"
 
         ],
         "Effect"   : "Allow",
