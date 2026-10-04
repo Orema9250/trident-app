@@ -52,6 +52,9 @@ jobs:
            
     - name: Build React Application
       working-directory: ./frontend
+      env: 
+        VITE_BACKEND_URL: https://api.orema-devops.xyz
+        VITE_SERVERLESS_URL: https://ij7dl0mx32.execute-api.us-east-1.amazonaws.com
       run: |
         npm run build
 
