@@ -74,6 +74,7 @@ jobs:
         if [ -z "$TASK_DEF_ARN" ] || [ "$TASK_DEF_ARN" = "None" ]; then
           echo "ECS service definition not found"
           exit 1
+        fi
 
         aws ecs describe-task-definition \
             --task-definition "$TASK_DEF_ARN" \
