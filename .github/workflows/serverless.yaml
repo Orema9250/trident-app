@@ -43,14 +43,16 @@ jobs:
         node-version: "24"
 
     - name: Install Depenndencies
-      working-directory: ./lambda/lambda
+      working-directory: ./modules/lambda/lambda
       run: |
         npm ci --omit=dev
 
     - name: Create Lambda ZIP
-      working-directory: ./lambda/lambda
+      working-directory: ./modules/lambda/lambda
       run: |
-        zip -r ../lambda.zip . -x "*.git*" "*.test.js"
+        zip -r ../../../lambda.zip . \
+        -x "*.git*" \
+        -x "*.test.js"
 
     - name: Update Lambda Function
       run: |
