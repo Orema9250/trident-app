@@ -45,7 +45,8 @@
           "cloudfront:GetCachePolicy",
           "cloudfront:TagResource",
           "cloudfront:ListTagsForResource",
-          "cloudfront:UpdateDistribution"
+          "cloudfront:UpdateDistribution",
+          "cloudfront:CreateInvalidation"
         ],
         "Effect"   : "Allow" ,
         "Resource" : "arn:aws:cloudfront::090243701151:*"
