@@ -42,7 +42,7 @@ jobs:
       with:
         node-version: "24"
 
-    - name: Install Depenndencies
+    - name: Install Dependencies
       working-directory: ./modules/lambda/lambda
       run: |
         npm ci --omit=dev
