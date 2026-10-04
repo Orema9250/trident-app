@@ -2,7 +2,7 @@ name: Deploy Frontend
 
 on:
   workflow_run:
-    workflows: [ "Lambda" ] 
+    workflows: [ "Terraform" ] 
     types:  [completed]
     branches: [ "main" ]
 

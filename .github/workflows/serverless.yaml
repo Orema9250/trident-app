@@ -2,7 +2,7 @@ name: Lambda
 
 on:
   workflow_run:
-    workflows: [ "Deploy to Amazon ECS" ]
+    workflows: [ "Terraform" ]
     types: [completed]
     branch: ["main"]
 
