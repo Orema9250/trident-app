@@ -51,6 +51,14 @@
         "Resource" : "arn:aws:cloudfront::090243701151:*"
       },
       {
+        "Sid" : "CloudfrontListDistribution",
+        "Action" : [
+          "cloudfront:ListDistributions"
+        ],
+        "Effect" : "Allow",
+        "Resource" : "*"
+      },
+      {
         "Sid" : "CertificateManager" ,
         "Action" : [
           "acm:DeleteCertificate",
