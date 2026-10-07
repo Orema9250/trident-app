@@ -6,7 +6,7 @@ The goal of this project was not just to deploy an application, but to build and
 
 ## Architecture
 
-![CloudTask Architecture](docs/architecture.png)
+![CloudTask Architecture](docs/3tier-project.drawio.svg)
 
 ### How it works
 
@@ -292,27 +292,31 @@ This project gave me hands-on experience across several areas of cloud engineeri
 
 ### Application
 
-![Application](docs/screenshots/application.png)
+![Application](docs/alb.jpg)
 
 ### ECS Fargate
 
-![ECS](docs/screenshots/ecs.png)
+![ECS](docs/ecs.jpg)
 
-### Healthy ALB Targets
+### Application Frontend Page
 
-![ALB Target Group](docs/screenshots/alb-targets.png)
+![Frontend Page](docs/frontpage.jpg)
 
 ### GitHub Actions
 
-![GitHub Actions](docs/screenshots/github-actions.png)
+![GitHub Actions](docs/githubaction.jpg)
+
+### Target Groups 
+
+![Healthy Target Groups](docs/targetgroup.jpg)
 
 ### Lambda / API Gateway
 
-![Serverless](docs/screenshots/serverless.png)
+![Serverless](docs/lambda.jpg)
 
 ### CloudWatch
 
-![CloudWatch](docs/screenshots/cloudwatch.png)
+![CloudWatch](docs/cloudwatch.jpg)
 
 ---
 
