@@ -358,6 +358,7 @@ Some improvements I would make in a production environment include:
 
 ---
 
+
 ## Project Goal
 
 This project was built to strengthen my practical understanding of **AWS infrastructure, containers, serverless architecture, Infrastructure as Code, CI/CD, IAM, and cloud troubleshooting**.
