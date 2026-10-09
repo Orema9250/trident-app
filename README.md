@@ -4,7 +4,7 @@ A cloud-native task management application built on AWS using **ECS Fargate, Lam
 
 ## Architecture
 
-![CloudTask Architecture](docs/3tier-trident-app-high.drawio.svg)
+![CloudTask Architecture](docs/3tier-trident-app-cor.drawio.svg)
 
 ### Architecture Overview
 
