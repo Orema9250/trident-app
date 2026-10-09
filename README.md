@@ -2,6 +2,23 @@
 
 A cloud-native task management application built on AWS using **ECS Fargate, Lambda, API Gateway, RDS PostgreSQL, DynamoDB, S3, CloudFront, Terraform, Docker, and GitHub Actions**.
 
+## Architecture
+
+![CloudTask Architecture](docs/3tier-trident-app-light.drawio.svg)
+
+### Architecture Overview
+
+CloudTask uses two application paths:
+
+- **Containerized path:** Route 53 → ALB → ECS Fargate → RDS PostgreSQL
+- **Serverless path:** API Gateway → Lambda → DynamoDB
+- **Frontend delivery:** CloudFront → S3
+
+The ECS application handles the main task-management workload, while the
+serverless component provides a separate API backed by DynamoDB.
+---
+
+
 ## Project Overview
 
 CloudTask was built as a hands-on cloud engineering project to practice designing, deploying, securing, and troubleshooting a multi-service AWS environment.
@@ -10,7 +27,7 @@ The goal was not simply to provision AWS resources with Terraform. I wanted to u
 
 During development I encountered issues across **ECS, ALB health checks, PostgreSQL connectivity, Secrets Manager, Lambda, API Gateway, IAM, Terraform, and CI/CD**. I investigated these failures using AWS logs, service events, CloudTrail, Terraform output, and IAM Access Analyzer.
 
-The result is a working application backed by reproducible infrastructure and a documented troubleshooting history.
+The result is a working application backed by reproducible infrastructure and a documented troubleshooting history .
 
 ## Key areas demonstrated:
 
@@ -26,21 +43,6 @@ The result is a working application backed by reproducible infrastructure and a 
 [→ View the CloudTask Troubleshooting Journal](docs/troubleshooting.md)
 ---
 
-## Architecture
-
-![CloudTask Architecture](docs/3tier-trident-app.drawio.svg)
-
-### Architecture Overview
-
-CloudTask uses two application paths:
-
-- **Containerized path:** Route 53 → ALB → ECS Fargate → RDS PostgreSQL
-- **Serverless path:** API Gateway → Lambda → DynamoDB
-- **Frontend delivery:** CloudFront → S3
-
-The ECS application handles the main task-management workload, while the
-serverless component provides a separate API backed by DynamoDB.
----
 
 ## What I built
 
