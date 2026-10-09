@@ -28,7 +28,7 @@ The result is a working application backed by reproducible infrastructure and a 
 
 ## Architecture
 
-![CloudTask Architecture](docs/3tier-project.drawio.svg)
+![CloudTask Architecture](docs/3tier-trident-app.drawio.svg)
 
 ### Architecture Overview
 
