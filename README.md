@@ -2,56 +2,44 @@
 
 A cloud-native task management application built on AWS using **ECS Fargate, Lambda, API Gateway, RDS PostgreSQL, DynamoDB, S3, CloudFront, Terraform, Docker, and GitHub Actions**.
 
-The goal of this project was not just to deploy an application, but to build and troubleshoot a realistic AWS environment using infrastructure as code and secure CI/CD.
+## Project Overview
+
+CloudTask was built as a hands-on cloud engineering project to practice designing, deploying, securing, and troubleshooting a multi-service AWS environment.
+
+The goal was not simply to provision AWS resources with Terraform. I wanted to understand what happens when the system breaks.
+
+During development I encountered issues across **ECS, ALB health checks, PostgreSQL connectivity, Secrets Manager, Lambda, API Gateway, IAM, Terraform, and CI/CD**. I investigated these failures using AWS logs, service events, CloudTrail, Terraform output, and IAM Access Analyzer.
+
+The result is a working application backed by reproducible infrastructure and a documented troubleshooting history.
+
+## Key areas demonstrated:
+
+* AWS networking and multi-tier architecture
+* Docker and ECS Fargate
+* Serverless workloads with Lambda and API Gateway
+* RDS PostgreSQL and DynamoDB
+* Terraform Infrastructure as Code
+* GitHub Actions with AWS OIDC
+* IAM least privilege
+* Cloud troubleshooting and incident investigation
+
+[→ View the CloudTask Troubleshooting Journal](docs/troubleshooting.md)
+---
 
 ## Architecture
 
 ![CloudTask Architecture](docs/3tier-project.drawio.svg)
 
-### How it works
+### Architecture Overview
 
-There are two backend paths in the architecture.
+CloudTask uses two application paths:
 
-**Containerized application**
+- **Containerized path:** Route 53 → ALB → ECS Fargate → RDS PostgreSQL
+- **Serverless path:** API Gateway → Lambda → DynamoDB
+- **Frontend delivery:** CloudFront → S3
 
-```text
-User
-  ↓
-Route 53
-  ↓
-Application Load Balancer
-  ↓
-ECS Fargate
-  ↓
-RDS PostgreSQL
-```
-
-The main Node.js/Express application runs inside Docker containers on ECS Fargate. The containers run in private subnets and are accessed through an internet-facing Application Load Balancer.
-
-**Serverless application**
-
-```text
-Client
-  ↓
-API Gateway
-  ↓
-Lambda
-  ↓
-DynamoDB
-```
-
-Lambda handles lightweight serverless operations while DynamoDB provides the serverless data store.
-
-The frontend is delivered separately:
-
-```text
-User
-  ↓
-CloudFront
-  ↓
-S3
-```
-
+The ECS application handles the main task-management workload, while the
+serverless component provides a separate API backed by DynamoDB.
 ---
 
 ## What I built
@@ -94,7 +82,34 @@ S3
 * IAM Access Analyzer
 
 ---
+## Key Engineering Decisions
 
+### GitHub OIDC instead of long-lived AWS credentials
+
+GitHub Actions authenticates to AWS using OIDC federation and an IAM role rather than storing permanent AWS access keys as GitHub secrets.
+
+### Private ECS workloads
+
+The ECS tasks run in private application subnets and receive traffic through the Application Load Balancer.
+
+### Secrets Manager for database credentials
+
+Database credentials are stored in AWS Secrets Manager rather than being hard-coded into the application or Terraform configuration.
+
+### Terraform for infrastructure
+
+AWS resources are managed through Terraform so that infrastructure changes are reviewable and reproducible.
+
+### Separate container and serverless workloads
+
+The project deliberately uses both ECS Fargate and Lambda to demonstrate different AWS compute models and understand where each architecture fits.
+
+### Evidence-driven troubleshooting
+
+When failures occurred, I used service events, logs, CloudTrail, Terraform output, and IAM Access Analyzer to identify the failing component before making changes.
+
+
+---
 ## CI/CD
 
 GitHub Actions handles the deployment workflow.
@@ -347,4 +362,4 @@ Some improvements I would make in a production environment include:
 
 This project was built to strengthen my practical understanding of **AWS infrastructure, containers, serverless architecture, Infrastructure as Code, CI/CD, IAM, and cloud troubleshooting**.
 
-Rather than only following a deployment tutorial, I intentionally built, broke, investigated, and fixed different parts of the environment to understand how the services actually interact.
+Rather than only following a deployment tutorial, I intentionally built, investigated, and fixed different parts of the environment to understand how the services actually interact.
